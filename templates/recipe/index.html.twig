@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecipeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    body {
+        padding:0;
+        margin: 0;
+    }
+    h1 {
+        text-align:center;
+        border-bottom:solid black 1px;
+        padding: 1rem;
+        margin:0;
+    }
+    ul {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style : none;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr) )
+    }
+    li { 
+        padding: 1rem;
+        margin: 1rem;
+        border: 1px solid black;
+        text-align: center;
+        box-sizing: border-box
+    }
+    li a {
+        text-decoration: none;
+        
+    }  
+</style>
+<h1>All Recipes</h1>
+
+<div class="example-wrapper">
+    <ul>
+    {% for recipe in recipes %}
+        <li><a href="{{ path('recipe_show', {id: recipe.id}) }}">{{ recipe.title }}</a></li>
+    {% endfor %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button>{{ button_label | default('Save') }}</button>
+    {{ form_end(form) }}
+    </ul>  
+</div>
+{% endblock %}
